@@ -3,22 +3,22 @@ import { useState, useCallback } from 'react';
 type TypeInitialValue = number;
 
 interface ICountReturn {
-  counter: number;
+  count: number;
   increment: () => void;
   decrement: () => void;
 }
 
 export const useCount = (initialValue = 0): ICountReturn => {
-  const [counter, setCounter] = useState<TypeInitialValue>(initialValue);
+  const [count, setCount] = useState<TypeInitialValue>(initialValue);
 
   const increment = useCallback(() => {
-    setCounter((prevCounter) => prevCounter + 1);
+    setCount((prevCount) => prevCount + 1);
   }, []);
 
   const decrement = useCallback(() => {
-    if (counter < 1) return;
-    setCounter((prevCounter) => prevCounter - 1);
-  }, [counter]);
+    if (count <= 0) return;
+    setCount((prevCount) => prevCount - 1);
+  }, [count]);
 
-  return { counter, increment, decrement };
+  return { count, increment, decrement };
 };

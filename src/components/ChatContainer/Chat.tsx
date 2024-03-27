@@ -1,5 +1,5 @@
-import React, { ChangeEvent, FC, useState } from 'react';
-import { IContacts } from './GlobalChat';
+import { ChangeEvent, FC, useState } from 'react';
+import { IContacts } from './contacts';
 
 interface IChatProps {
   contact: IContacts;
@@ -8,21 +8,18 @@ interface IChatProps {
 export const Chat: FC<IChatProps> = ({ contact }: IChatProps) => {
   const [chatText, setChatText] = useState<string>('');
 
-  const handleChatValue = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleTextareaValue = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setChatText(event.target.value);
   };
 
   return (
     <section className='chat'>
       <textarea
-        name='chat'
-        id='chat'
         placeholder={`Chat to ${contact.name}`}
         value={chatText}
-        onChange={handleChatValue}
+        onChange={handleTextareaValue}
       />
-      <br />
-      <button>Send to {contact.email}</button>
+      <button type='button'>Send to {contact.email}</button>
     </section>
   );
 };

@@ -1,22 +1,20 @@
 import { FC, useState } from 'react';
 import './App.css';
-import { Form } from './components/Form';
+import { Counter } from './components/Counter/Counter';
+import { GlobalChat } from './components/ChatContainer/GlobalChat';
+
+type TypePlayer = boolean;
 
 export const App: FC = () => {
-  const [showHint, setShowHint] = useState<boolean>(false);
+  const [isPlayerA, setIsPlayerA] = useState<TypePlayer>(true);
   return (
-    <div>
-      {showHint && (
-        <p>
-          <i>Hint: Your favorite city?</i>
-        </p>
-      )}
-      <Form />
-      {showHint ? (
-        <button onClick={() => setShowHint(false)}>Hide hint</button>
-      ) : (
-        <button onClick={() => setShowHint(true)}>Show hint</button>
-      )}
-    </div>
+    <>
+      {isPlayerA && <Counter key='Taylor' person='Taylor' />}
+      {!isPlayerA && <Counter key='Nick' person='Nick' />}
+      <button type='button' onClick={() => setIsPlayerA(!isPlayerA)}>
+        Next player
+      </button>
+      <GlobalChat />
+    </>
   );
 };

@@ -1,36 +1,35 @@
 import { FC, useState } from 'react';
 import { useCount } from '../../hooks/useCount';
 
-interface ICounterProps {
+interface IFancy {
+  isFancy?: boolean;
   person: string;
 }
 
-export const Counter: FC<ICounterProps> = ({ person }: ICounterProps) => {
-  const { counter, increment } = useCount(0);
-  const [hover, setHover] = useState<boolean>(false);
+export const Counter: FC<IFancy> = ({ person }: IFancy) => {
+  const { count, increment } = useCount(0);
+  const [isHover, setIsHover] = useState<boolean>(false);
 
   let className = 'counter';
 
-  if (hover) {
+  if (isHover) {
     className += ' hover';
   }
 
+  // if (isFancy) {
+  //   className += ' fancy';
+  // }
+
   return (
     <div
-      style={{ width: 200 }}
       className={className}
-      onPointerEnter={() => setHover(true)}
-      onPointerLeave={() => setHover(false)}
+      onPointerEnter={() => setIsHover(true)}
+      onPointerLeave={() => setIsHover(false)}
     >
-      {/* <h1>{counter}</h1> */}
-      <h1>
-        {person}'s score: {counter}
-      </h1>
-      <button
-        onClick={() => increment()}
-        style={{ width: 150, margin: '0 auto' }}
-      >
-        {person ? 'Add fancy one' : 'Add one'}
+      <h3>{person} score:</h3>
+      <h1>{count}</h1>
+      <button type='button' onClick={increment}>
+        Add one
       </button>
     </div>
   );

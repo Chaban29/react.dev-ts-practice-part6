@@ -1,27 +1,21 @@
 import { FC } from 'react';
-import { IContacts } from './GlobalChat';
+import { IContacts } from './contacts';
 
-interface IContactList {
-  selectedContact: IContacts;
+interface IContactListProps {
   contacts: IContacts[];
   onSelect: (contact: IContacts) => void;
 }
 
-export const ContactList: FC<IContactList> = ({
-  selectedContact,
-  contacts,
+export const ContactList: FC<IContactListProps> = ({
   onSelect,
-}: IContactList) => {
+  contacts,
+}: IContactListProps) => {
   return (
     <section className='contact-list'>
       <ul>
         {contacts.map((contact) => (
           <li key={contact.id}>
-            <button
-              onClick={() => {
-                onSelect(contact);
-              }}
-            >
+            <button type='button' onClick={() => onSelect(contact)}>
               {contact.name}
             </button>
           </li>

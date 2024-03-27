@@ -1,13 +1,8 @@
-import { FC, useState, ChangeEvent } from 'react';
+import { FC, useState } from 'react';
 import { Counter } from './Counter';
 
-export const CounterBox: FC = () => {
+export const CounterContainer: FC = () => {
   const [isFancy, setIsFancy] = useState<boolean>(false);
-
-  const handleCheckedChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setIsFancy(event.target.checked);
-  };
-
   return (
     <div>
       {/* {isFancy ? (
@@ -25,9 +20,9 @@ export const CounterBox: FC = () => {
           name='check'
           id='check'
           checked={isFancy}
-          onChange={handleCheckedChange}
+          onChange={(e) => setIsFancy(e.target.checked)}
         />
-        Use fancy styling
+        Show fancy styles
       </label>
     </div>
   );
